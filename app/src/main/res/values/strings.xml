@@ -1,0 +1,76 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">WaterTankerProject</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone no</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="password">Password</string>
+    <string name="registration">Registration</string>
+    <string name="supplier_detail">Supplier Details</string>
+    <string name="cnic">CNIC #</string>
+    <string name="not_registered">Not registered? Click here</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="already_registered">Already registered? Login here</string>
+    <string name="required">Required</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="password_recover">Password Recovery</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="recover">Recover</string>
+    <string name="remember_password">Remember password? Login again</string>
+    <string name="back">Back</string>
+    <string name="welcome">Welcome %s</string>
+    <string name="exit">Exit</string>
+    <string name="are_you_sure_you_want_to_exit">Are you sure you want to %s?</string>
+    <string name="cancel_order">Order already placed, do you want to cancel?</string>
+    <string name="reject_order">Do you want to reject?</string>
+    <string name="order_cancelled">Order cancelled successfully</string>
+    <string name="yes">Yes</string>
+    <string name="email_sent">We have sent you instructions to reset your password!</string>
+    <string name="email_failed">Failed to send reset email!</string>
+    <string name="requirement">Requirement</string>
+    <string name="contact">Phone no.</string>
+    <string name="address">Address</string>
+    <string name="full_price">Full tanker price</string>
+    <string name="half_price">Half tanker price</string>
+    <string name="place_order">Place Order</string>
+    <string name="cancel">Cancel</string>
+    <string name="full_name">Full Name:</string>
+    <string name="choose_type">Choose Type</string>
+    <string name="full">Full</string>
+    <string name="half">Half</string>
+    <string name="order_created">Order Created Successfully</string>
+    <string name="no_data_exists">No Data Exist</string>
+    <string name="already_ordered">Already Ordered</string>
+    <string name="full_name_value">%1$s %2$s</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="no_data">No Data Found</string>
+    <string name="order_accepted">Order has been accepted</string>
+    <string name="my_orders">My Orders</string>
+    <string name="account_disabled">Your account is disabled</string>
+    <string name="ordertime">Order Time</string>
+    <string name="deliverytime">Delivery Time</string>
+    <string name="delivery_time_updated">Delivery Time Updated Successfully</string>
+    <string name="type">Type</string>
+    <string name="block">Block</string>
+    <string name="unblock">Unblock</string>
+    <string name="delete">Delete</string>
+
+<!--    Admin credentials-->
+    <string name="admin_email">admin@gmail.com</string>
+    <string name="admin_password">111111</string>
+
+    <string-array name="types">
+        <item>Choose:</item>
+        <item>User</item>
+        <item>Supplier</item>
+    </string-array>
+
+    <string-array name="tanker">
+        <item>Choose:</item>
+        <item>Full</item>
+        <item>Half</item>
+    </string-array>
+</resources>

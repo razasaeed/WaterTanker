@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="user"
+            type="ex.next.watertanker.models.Users" />
+
+        <variable
+            name="handler"
+            type="ex.next.watertanker.common.RecyclerClickInterface" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:onClick="@{() -> handler.onClick(user)}"
+        app:cardBackgroundColor="@color/yellow"
+        app:cardCornerRadius="@dimen/_6sdp"
+        app:cardElevation="@dimen/_6sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/tv_supplier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{user.getfName()}"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{user.getPhone()}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_supplier"
+                android:layout_marginStart="10dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
