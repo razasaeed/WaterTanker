@@ -60,4 +60,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: my-app-debug-$(date +%Y-%m-%d).apk
-        path: app/build/outputs/apk/debug/my-app-debug-$(date +%Y-%m-%d).apk
+        path: app/build/intermediates/apk/debug/my-app-debug-$(date +%Y-%m-%d).apk
