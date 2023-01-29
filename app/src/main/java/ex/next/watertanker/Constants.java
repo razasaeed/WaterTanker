@@ -15,5 +15,4 @@ public class Constants {
     public static String ACTIVE = "ACTIVE";
     public static String INACTIVE = "INACTIVE";
     public static String TIME_FORMAT = "hh:mm aa";
-    public static String TEST = "TEST";
 }
