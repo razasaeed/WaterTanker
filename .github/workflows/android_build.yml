@@ -34,7 +34,7 @@ jobs:
     - name: set up JDK
       uses: actions/setup-java@v1
       with:
-        java-version: 1.8
+        java-version: 11
 
 # each task will start with a name secion. now define a new task
 
