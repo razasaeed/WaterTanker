@@ -51,5 +51,3 @@ jobs:
 # want to prevent the merging of PR's that have failing workflows. All this above is the first step
 # of a complete pipeline
 # How to disable GitHub pull request merge button when CI job got failed?
-
-    - name: python test
