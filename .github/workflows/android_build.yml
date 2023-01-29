@@ -1,0 +1,48 @@
+name: Android Build
+
+# on keyword here is defining what actions this workflows should be running in responsible to
+on: pull_request
+
+# job is to define the task to run on each pull request. job is essentially just an environment specifications
+# and a set of tasks. Every workflow must have atleast 1 job
+jobs:
+  build:
+
+# Now that we have our job created above, we need to define the environment or the runner that would
+# be used to execute all of the tasks we will later define. Now github actions support using your own
+# custom runners such as a custom docker container or you can use the github hosted runners. In our case
+# we will use github runner to build our android app by using
+
+    runs-on: ubuntu-latest
+
+# by default the ubuntu-latest runner comes pre installed with various versions of android sdks, build tools
+# support repositories and more. Now we have defined our environment for our job so now begin start defining
+# the steps that would actually be run to validate our android build. First we will define our steps by adding
+# a new steps section
+
+    steps:
+# here we can add our first task. Now the first thing is to checkout the code for the specific branch
+# here we can define github pre defined actions. v1 will define the version of checkout action and all of the
+# backend information what this action actually does which is abstracted away from us. This is the most powerful
+# thing about github actions is that you can package together functionality and can reuse them in a single line
+# in yaml files
+
+    - uses: actions/checkout@v1
+
+# now we will configure the jdk for our android build
+
+    - name: set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+
+# each task will start with a name secion. now define a new task
+
+    - name: Run Tests
+      run: ./gradlew test
+
+# the run command above will essential going to take in a command line input. Now we can actually assemble
+# our application
+
+    - name: Build Project
+      run: ./gradlew assemble
