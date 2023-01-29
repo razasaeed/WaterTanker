@@ -7,7 +7,7 @@ on:
       - '.github/*.json'
   push:
     branches:
-      - main
+      - master
       - releases/*
     paths:
       - 'dist/**.js'
