@@ -48,24 +48,16 @@ jobs:
       run: ./gradlew assemble
 
 # how to build test apk after successful workflows:
+# In below example, the new step named Build Test APK runs the ./gradlew assembleDebug command,
+# which compiles the debug version of your Android application. The generated APK will be
+# located in the app/build/outputs/apk/debug directory using above step named: Upload apk to
+# artifact. the apk name would be my-app-debug-currentdate.apk
 
     - name: Build Test APK
       run: ./gradlew assembleDebug
 
     - name: Upload APK to artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-app-debug-$(date +%Y-%m-%d).apk
-          path: app/build/outputs/apk/debug/my-app-debug-$(date +%Y-%m-%d).apk
-
-# In above example, the new step named Build Test APK runs the ./gradlew assembleDebug command,
-# which compiles the debug version of your Android application. The generated APK will be
-# located in the app/build/outputs/apk/debug directory using above step named: Upload apk to
-# artifact. the apk name would be my-app-debug-currentdate.apk
-
-
-# now after running the above and see the result of this basic CI pipeline, you may evantually
-# want to prevent the merging of PR's that have failing workflows. All this above is the first step
-# of a complete pipeline
-# How to disable GitHub pull request merge button when CI job got failed?
-# upload app build to firebase app distribution
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-app-debug-$(date +%Y-%m-%d).apk
+        path: app/build/outputs/apk/debug/my-app-debug-$(date +%Y-%m-%d).apk
