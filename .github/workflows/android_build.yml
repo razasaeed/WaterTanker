@@ -46,3 +46,10 @@ jobs:
 
     - name: Build Project
       run: ./gradlew assemble
+
+# now after running the above and see the result of this basic CI pipeline, you may evantually
+# want to prevent the merging of PR's that have failing workflows. All this above is the first step
+# of a complete pipeline
+# How to disable GitHub pull request merge button when CI job got failed?
+
+    - name: python test
