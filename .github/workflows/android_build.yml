@@ -53,11 +53,13 @@ jobs:
 # located in the app/build/outputs/apk/debug directory using above step named: Upload apk to
 # artifact. the apk name would be my-app-debug-currentdate.apk
 
-    - name: Build Test APK
+    - name: Build with Gradle
       run: ./gradlew assembleDebug
 
-    - name: Upload APK to artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: my-app-debug-$(date +%Y-%m-%d).apk
-        path: app/build/intermediates/apk/debug/my-app-debug-$(date +%Y-%m-%d).apk
+    - name: Create assets folder
+      run: |
+        mkdir -p assets
+
+    - name: Copy debug APK to assets folder
+      run: |
+        cp app/build/outputs/apk/debug/app-debug.apk assets/debug.apk
