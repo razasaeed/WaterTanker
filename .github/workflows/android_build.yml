@@ -3,7 +3,7 @@ name: Upload APK to Firebase
 on:
   push:
     branches:
-      - main
+      - develop
 
 env:
   FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
