@@ -3,11 +3,6 @@ name: "Android Build"
 # on keyword here is defining what actions this workflows should be running in responsible to
 on: pull_request
 
-inputs:
-  TEST_API_KEY:
-    description: "TEST API KEY"
-    required: true
-
 # job is to define the task to run on each pull request. job is essentially just an environment specifications
 # and a set of tasks. Every workflow must have atleast 1 job
 jobs:
@@ -19,6 +14,11 @@ jobs:
 # we will use github runner to build our android app by using
 
     runs-on: ubuntu-latest
+
+    inputs:
+      TEST_API_KEY:
+        description: "TEST API KEY"
+        required: true
 
 # by default the ubuntu-latest runner comes pre installed with various versions of android sdks, build tools
 # support repositories and more. Now we have defined our environment for our job so now begin start defining
