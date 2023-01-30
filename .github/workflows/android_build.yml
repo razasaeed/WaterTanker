@@ -48,4 +48,4 @@ jobs:
 #      run: ./gradlew assemble
 
     - name: Print Secret
-      run: echo "The value of the secret is ${{ secrets.API_KEY_TWO }}"
+      run: echo "The value of the secret is ${{ secrets.API_KEY }}"
