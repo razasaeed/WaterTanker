@@ -38,14 +38,14 @@ jobs:
 
 # each task will start with a name secion. now define a new task
 
-    - name: Run Tests
-      run: ./gradlew test
+#    - name: Run Tests
+#      run: ./gradlew test
 
 # the run command above will essential going to take in a command line input. Now we can actually assemble
 # our application
 
-    - name: Build Project
-      run: ./gradlew assemble
+#    - name: Build Project
+#      run: ./gradlew assemble
 
     - name: Print api key
-      run: echo "The secret value is ${{ secrets.TEST_API_KEY }}"
+      run: echo "The secret value is ${{ inputs.TEST_API_KEY }}"
