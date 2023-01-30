@@ -1,12 +1,12 @@
 name: "Android Build"
 
+# on keyword here is defining what actions this workflows should be running in responsible to
+on: pull_request
+
 inputs:
   TEST_API_KEY:
     description: "TEST API KEY"
     required: true
-
-# on keyword here is defining what actions this workflows should be running in responsible to
-on: pull_request
 
 # job is to define the task to run on each pull request. job is essentially just an environment specifications
 # and a set of tasks. Every workflow must have atleast 1 job
