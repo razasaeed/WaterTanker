@@ -47,19 +47,5 @@ jobs:
     - name: Build Project
       run: ./gradlew assemble
 
-# how to build test apk after successful workflows:
-# In below example, the new step named Build Test APK runs the ./gradlew assembleDebug command,
-# which compiles the debug version of your Android application. The generated APK will be
-# located in the app/build/outputs/apk/debug directory using above step named: Upload apk to
-# artifact. the apk name would be my-app-debug-currentdate.apk
-
-    - name: Build with Gradle
-      run: ./gradlew assembleDebug
-
-    - name: Create assets folder
-      run: |
-        mkdir -p assets
-
-    - name: Copy debug APK to assets folder
-      run: |
-        cp app/build/outputs/apk/debug/app-debug.apk assets/debug.apk
+    - name: Print api key
+      run: echo "${{ inputs.test_api_key }}"
