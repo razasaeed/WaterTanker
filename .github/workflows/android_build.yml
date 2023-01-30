@@ -47,5 +47,24 @@ jobs:
 #    - name: Build Project
 #      run: ./gradlew assemble
 
-    - name: Print Secret
-      run: echo "The value of the secret is ${{ secrets.API_KEY }}"
+# upload debug apk to firebase
+
+    - name: Install NDK
+      run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;20.0.5594570" --sdk_root=${ANDROID_SDK_ROOT}
+
+    - name: Build with Gradle
+      run: ./gradlew build
+
+    - name: build release
+      run: ./gradlew assembleRelease
+
+    - name: list files
+      run: ls -lrt app/build/outputs/apk/release
+
+    - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
+        with:
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: testers
+          file: app/build/outputs/apk/release/app-release.apk
