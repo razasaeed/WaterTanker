@@ -1,9 +1,9 @@
 name: "Android Build"
 
-#inputs:
-#  test_api_key:
-#    description: "TEST API KEY"
-#    required: true
+inputs:
+  TEST_API_KEY:
+    description: "TEST API KEY"
+    required: true
 
 # on keyword here is defining what actions this workflows should be running in responsible to
 on: pull_request
