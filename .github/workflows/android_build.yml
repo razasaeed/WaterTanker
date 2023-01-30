@@ -47,5 +47,10 @@ jobs:
 #    - name: Build Project
 #      run: ./gradlew assemble
 
-    - name: Print api key
-      run: echo "The secret value is ${{ inputs.TEST_API_KEY }}"
+    inputs:
+      TEST_API_KEY:
+        description: The name of the secret to print
+        required: true
+
+    - name: Print Secret
+      run: echo "The value of the secret is ${{ inputs.TEST_API_KEY }}"
