@@ -15,11 +15,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    inputs:
-      TEST_API_KEY:
-        description: "TEST API KEY"
-        required: true
-
 # by default the ubuntu-latest runner comes pre installed with various versions of android sdks, build tools
 # support repositories and more. Now we have defined our environment for our job so now begin start defining
 # the steps that would actually be run to validate our android build. First we will define our steps by adding
@@ -53,4 +48,4 @@ jobs:
 #      run: ./gradlew assemble
 
     - name: Print Secret
-      run: echo "The value of the secret is ${{ inputs.TEST_API_KEY }}"
+      run: echo "The value of the secret is ${{ secrets.TEST_API_KEY }}"
