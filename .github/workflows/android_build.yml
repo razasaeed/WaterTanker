@@ -37,12 +37,20 @@ jobs:
 #      - name: Deploy to Firebase Distribution
 #        run: firebase deploy --token=$FIREBASE_TOKEN
 
+      - name: Save build artifacts
+        run: |
+          git config --global user.email "razasaeed135@gmail.com"
+          git config --global user.name "Raza Saeed"
+          git add app/build/outputs/
+          git commit -m "Adding build artifacts"
+          git push origin HEAD
+
       - name: Distribute APK to AppCenter
         uses: wzieba/AppCenter-Github-Action@v1
         with:
           appName: ${{ secrets.APP_CENTER_APP_NAME }}
           token: ${{ secrets.APP_CENTER_API_TOKEN }}
           group: testers
-          file: app/build/intermediates/apk/debug/app-debug.apk
+          file: app/build/outputs/app-debug.apk
           notifyTesters: true
           debug: true
