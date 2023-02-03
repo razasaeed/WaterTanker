@@ -45,4 +45,4 @@ jobs:
           group: testers
           file: app/build/intermediates/apk/debug/app-debug.apk
           notifyTesters: true
-          debug: false
+          debug: true
