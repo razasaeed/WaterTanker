@@ -44,4 +44,4 @@ jobs:
           distribute-to: testers
           release-notes: Automated build and distribute of APK
           api-token: ${{ secrets.APP_CENTER_API_TOKEN }}
-          file-path: app/build/outputs/apk/debug/app-debug.apk
+          file-path: app/build/intermediates/apk/debug/app-debug.apk
