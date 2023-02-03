@@ -1,55 +1,56 @@
-name: Android Build
+name: Build and distribute APK
 
-# on keyword here is defining what actions this workflows should be running in responsible to
-on: pull_request
+on:
+  push:
+    branches:
+      - develop
 
-# job is to define the task to run on each pull request. job is essentially just an environment specifications
-# and a set of tasks. Every workflow must have atleast 1 job
+env:
+  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
 jobs:
   build:
-
-# Now that we have our job created above, we need to define the environment or the runner that would
-# be used to execute all of the tasks we will later define. Now github actions support using your own
-# custom runners such as a custom docker container or you can use the github hosted runners. In our case
-# we will use github runner to build our android app by using
-
     runs-on: ubuntu-latest
 
-# by default the ubuntu-latest runner comes pre installed with various versions of android sdks, build tools
-# support repositories and more. Now we have defined our environment for our job so now begin start defining
-# the steps that would actually be run to validate our android build. First we will define our steps by adding
-# a new steps section
-
     steps:
-# here we can add our first task. Now the first thing is to checkout the code for the specific branch
-# here we can define github pre defined actions. v1 will define the version of checkout action and all of the
-# backend information what this action actually does which is abstracted away from us. This is the most powerful
-# thing about github actions is that you can package together functionality and can reuse them in a single line
-# in yaml files
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - uses: actions/checkout@v1
+      - name: Setup Android SDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
 
-# now we will configure the jdk for our android build
+      - name: Install dependencies
+        run: ./gradlew build
 
-    - name: set up JDK
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
+      - name: Build APK
+        run: ./gradlew assembleDebug
 
-# each task will start with a name secion. now define a new task
+#      - name: Install Firebase CLI
+#        run: |
+#          npm install -g firebase-tools
+#
+#      - name: Login to Firebase
+#        run: firebase login:ci --token=$FIREBASE_TOKEN --non-interactive
+#
+#      - name: Deploy to Firebase Distribution
+#        run: firebase deploy --token=$FIREBASE_TOKEN
 
-    - name: Run Tests
-      run: ./gradlew test
+      - name: Save build artifacts
+        run: |
+          git config --global user.email "razasaeed135@gmail.com"
+          git config --global user.name "Raza Saeed"
+          git add app/build/outputs/
+          git commit -m "Adding build artifacts"
+          git push origin HEAD
 
-# the run command above will essential going to take in a command line input. Now we can actually assemble
-# our application
-
-    - name: Build Project
-      run: ./gradlew assemble
-
-# now after running the above and see the result of this basic CI pipeline, you may evantually
-# want to prevent the merging of PR's that have failing workflows. All this above is the first step
-# of a complete pipeline
-# How to disable GitHub pull request merge button when CI job got failed?
-
-    - name: python test
+      - name: Distribute APK to AppCenter
+        uses: wzieba/AppCenter-Github-Action@v1
+        with:
+          appName: ${{ secrets.APP_CENTER_APP_NAME }}
+          token: ${{ secrets.APP_CENTER_API_TOKEN }}
+          group: testers
+          file: app/build/outputs/app-debug.apk
+          notifyTesters: true
+          debug: true
