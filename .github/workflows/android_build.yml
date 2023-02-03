@@ -41,7 +41,7 @@ jobs:
         uses: wzieba/AppCenter-Github-Action@v1
         with:
           appName: ${{ secrets.APP_CENTER_APP_NAME }}
-          token: ${{ secrets.APP_CENTER_API_TOKEN }}
+          token: ${{ secrets.APP_CENTER_API_TOKEN_TWO }}
           group: testers
           file: app/build/intermediates/apk/debug/app-debug.apk
           notifyTesters: true
