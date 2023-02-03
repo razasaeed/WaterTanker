@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Setup Android SDK
         uses: actions/setup-java@v1
@@ -37,10 +37,11 @@ jobs:
 #      - name: Deploy to Firebase Distribution
 #        run: firebase deploy --token=$FIREBASE_TOKEN
 
-      - name: upload artifact to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
+      - name: Distribute APK to AppCenter
+        uses: microsoft/appcenter-action@v1
         with:
-          appId: ${{secrets.FIREBASE_APP_ID}}
-          token: ${{secrets.FIREBASE_TOKEN}}
-          groups: Debug
-          file: app/build/intermediates/apk/debug/app-debug.apk
+          app-name: ${{ env.APP_CENTER_APP_NAME }}
+          distribute-to: testers
+          release-notes: Automated build and distribute of APK
+          api-token: ${{ secrets.APP_CENTER_API_TOKEN }}
+          file-path: app/build/outputs/apk/debug/app-debug.apk
