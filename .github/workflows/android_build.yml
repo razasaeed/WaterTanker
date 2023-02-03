@@ -38,7 +38,7 @@ jobs:
 #        run: firebase deploy --token=$FIREBASE_TOKEN
 
       - name: Distribute APK to AppCenter
-        uses: microsoft/appcenter-action@v1
+        uses: wzieba/AppCenter-Github-Action@v1
         with:
           app-name: ${{ env.APP_CENTER_APP_NAME }}
           distribute-to: testers
