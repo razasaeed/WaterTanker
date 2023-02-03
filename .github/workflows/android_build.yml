@@ -1,4 +1,4 @@
-name: Upload APK to Firebase
+name: Build and distribute APK
 
 on:
   push:
@@ -6,20 +6,29 @@ on:
       - develop
 
 env:
-  FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
 jobs:
-  build-and-upload:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Upload APK to Firebase
-        run: |
-          curl \
-            --header "Content-Type: application/vnd.android.package-archive" \
-            --header "Authorization: Bearer ${FIREBASE_API_KEY}" \
-            --data-binary @app/build/outputs/apk/release/app-release.apk \
-            https://appdistribution.googleapis.com/v1/apps/1:155963927208:android:aff1039ad00595b10cf09d/releases
+      - name: Setup Android SDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+
+      - name: Install dependencies
+        run: ./gradlew build
+
+      - name: Build APK
+        run: ./gradlew assembleDebug
+
+      - name: Login to Firebase
+        run: firebase login:ci --token=$FIREBASE_TOKEN
+
+      - name: Deploy to Firebase Distribution
+        run: firebase deploy --token=$FIREBASE_TOKEN
