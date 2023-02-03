@@ -40,8 +40,9 @@ jobs:
       - name: Distribute APK to AppCenter
         uses: wzieba/AppCenter-Github-Action@v1
         with:
-          app-name: ${{ env.APP_CENTER_APP_NAME }}
-          distribute-to: testers
-          release-notes: Automated build and distribute of APK
-          api-token: ${{ secrets.APP_CENTER_API_TOKEN }}
-          file-path: app/build/intermediates/apk/debug/app-debug.apk
+          appName: ${{ env.APP_CENTER_APP_NAME }}
+          token: ${{ secrets.APP_CENTER_API_TOKEN }}
+          group: testers
+          file: app/build/intermediates/apk/debug/app-debug.apk
+          notifyTesters: true
+          debug: false
