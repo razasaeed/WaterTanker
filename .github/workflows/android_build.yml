@@ -27,6 +27,10 @@ jobs:
       - name: Build APK
         run: ./gradlew assembleDebug
 
+      - name: Install Firebase CLI
+        run: |
+          npm install -g firebase-tools
+
       - name: Login to Firebase
         run: firebase login:ci --token=$FIREBASE_TOKEN
 
